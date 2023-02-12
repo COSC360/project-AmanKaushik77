@@ -4,12 +4,9 @@ DIscussion Forum Website
 
 ## Project Description
 
-![Shape1](RackMultipart20230212-1-aj3ycl_html_237499165a11f2b9.gif)
-
 For our project we plan on making a discussion forum website. This website will act as a common ground for sport fans to engage in conversations, and debates about their favorite sports. Users will be able to see trending topics and participate in conversations, debates, and ask questions to others who share a similar interest. Our website will have forums for every sport ranging from basketball to formula one. The main objective for this website is to create an online community of sport fans who can share their passion with others who share the passion.
 
 ## User Groups:
-
 
 **Not Registered Account** - Can view all discussion forums, but will be unable to participate in discussions about the desired topic unless they create an account.
 
@@ -18,8 +15,6 @@ For our project we plan on making a discussion forum website. This website will 
 **Admin** - Can view, participate, report accounts, and edit all posts in the chosen forum. Admins have a responsibility to moderate the forum and to report any inappropriate behavior.
 
 ## Minimum Functionality/Deliverables:
-
-![Shape3](RackMultipart20230212-1-aj3ycl_html_237499165a11f2b9.gif)
 
 **Users are able to:**
 
