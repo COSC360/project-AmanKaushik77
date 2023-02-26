@@ -1,0 +1,221 @@
+body{
+    background-image: url('bg.jpg');
+    background-color: #212121 ;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+i{
+    color: black;
+}
+.logo{
+    position: absolute;
+    top: .7em;
+    right : 92%
+}
+
+
+.navbar{
+    background-color:#ff006e ;
+    color: white;
+    text-align: center;
+    padding: 7px;
+}
+
+header h1{
+    font-size: 2.2em;
+}
+
+header input{
+    position : absolute;
+    top: 5em;
+    right: 5em;
+}
+
+.navbar li{
+    display: inline-block;
+    background-color: white;
+    margin-right: 10em;
+    margin-left: 6em;
+    padding: 10px;
+    border: solid ;
+    
+}
+
+.navbar a{
+    text-decoration: none;
+    color: #ff006e ;
+}
+
+.navbar li:hover{
+    background-color: #3a86ff;
+}
+
+.recent {
+    text-align: center;
+    background-color:#3a86ff ;
+    color: white;
+    margin : 2em 15em ;
+
+    
+
+}
+
+.container table{
+    margin: auto;
+    border: solid 1px white;
+}
+
+.upvote{
+    background-color: rgb(3, 204, 3);
+    border : none;
+}
+.downvote{
+    background-color: rgb(242, 60, 60);
+    border : none;
+}
+
+.container table td{
+    border: solid 1px white;
+}
+
+.side{
+    background-color: #8338ec;
+    color: white;
+    width: 12em;
+    height: 70%;
+    position: absolute;
+    top: 14.5em;
+    margin-left: 1em;
+    
+
+
+}
+.side h2{
+    text-align: center;
+}
+.side ul{
+    margin-right: 10em;
+    
+}
+.side li{
+    
+
+    list-style-type: none;
+    text-align: center;
+    padding: 10px;
+    border: solid #212121;
+    width: 6em;
+
+    margin-top: 2em ;
+
+}
+.side li:hover{
+    background-color: #ffbe0b ;
+}
+
+.side a{
+    color: white;
+    text-decoration: none;
+}
+
+.user{
+    float: left;
+    background-color: #fb5607 ;
+    color: white;
+    width: 10em;
+    margin-right: 2em; ;
+    position: absolute;
+    top:13em;
+    left: 80em;
+    padding: 1em;
+    text-align: center;
+}
+
+.user li{
+    list-style-type: none;
+    text-align: center;
+    padding: 10px;
+    border: solid #212121;
+    width: 4em;
+
+    margin-top: 1em ;
+}
+.user li:hover{
+    background-color: #ffbe0b ;
+}
+
+.user a{
+    text-decoration: none;
+    color: white;
+}
+
+.profile-overview{
+    background-color: #8338ec;
+    color: white;
+
+    text-align: center;
+    margin-top: 2em;
+    width: 20em;
+    padding: 2em;
+}
+.proContain{
+    background-color:#ffbe0b;
+    position: relative;
+    float: right;
+    color: white;
+    text-align: center;
+    width: 20em;
+    bottom: 18em;
+}
+.recent-posts{
+    background-color:#3a86ff;
+    color: white;
+    text-align: center;
+}
+
+.recent-posts td{
+    border: solid white;
+}
+
+
+.recent-posts a{
+    color: white;
+    text-decoration: none;
+}
+
+.create-post{
+    background-color: #ff006e;
+    color: white;
+    width: 30em;
+    position: absolute;
+    left: 32em;
+    bottom: 20em;
+    padding: 2em;
+    text-align: center;
+}
+
+.trend-container{
+    background-color: #3a86ff;
+}
+
+.trend-container h1{
+    color: black;
+     text-align: center;
+     background-color: #ffbe0b;
+}
+
+.trend-container table{
+    text-align: center;
+    font-size: 2em;;
+    width: 100%;
+    color: white;
+}
+
+.trend-container a{
+    text-decoration: none;
+    color: white;
+}
+
+.trend-container a:hover{
+    color: #ff006e;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Penalty Box - Profile</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://kit.fontawesome.com/d0c6f74c0e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav class = "navbar">
+            <h1>The Penalty Box</h1>
+            <img class = "logo" src = "Penalty.png" width="100em" height="100em">
+            <input type="text" placeholder="Search">
+            <hr>
+            <ul>
+                <li><i class="fa-solid fa-house"></i><a href = "index.html"> Home</a></li>
+                <li><i class="fa-solid fa-user"></i><a href = "profile.html"> Profile</a></li>
+                <li><i class="fa-solid fa-fire"></i><a href = "trending.html"> Trending</a></li>
+                <li><i class="fa-solid fa-right-to-bracket"></i><a href = "login.html"> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="profile-overview">
+        <img src="user-avatar.jpg" alt="User Avatar">
+        <h2>SplashBro</h2>
+        <p>Joined: January 22st, 2023</p>
+        <p>Last Active: February 20th, 2023</p>
+        <p>Total Posts: 5</p>
+        <p>Location: Vancover, Canada</p>
+    </div>
+
+    <div class = "proContain">
+        <table class="recent-posts">
+            <h2>Your Posts!</h2>
+            <thead>
+              <tr>
+                <th>Post Title</th>
+                <th>Date Posted</th>
+                <th>Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#">Chelsea will win 3 league titles after this year</a></td>
+                <td>February 25th, 2023</td>
+                <td><a href="#">5</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">Canada 2026 World Cup run</a></td>
+                <td>February 22nd, 2023</td>
+                <td><a href="#">2</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">Dame to the heat?</a></td>
+                <td>February 18th, 2023</td>
+                <td><a href="#">15</a></td>
+              </tr>
+              <tr>
+                <td><a href="#">New arena in Calgary?!</a></td>
+                <td>February 16th, 2023</td>
+                <td><a href="#">45</a></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    
+    <div class = "create-post">
+        <h1>Create a Post!</h1>
+        <form action="submit-post.php" method="post">
+            <p>
+            <label for="post-title">Post Title:</label>
+            <input type="text" id="post-title" name="post-title" required>
+            </p>
+            <p></p>
+            <label for="post-content">Post Content:</label>
+            <textarea id="post-content" name="post-content" required></textarea>
+            </p>
+            <p>
+            <label for="post-forum">Select a Forum:</label>
+            <select id="post-forum" name="post-forum" required>
+              <option value="">--Select a Topic--</option>
+              <option value="NBA">NBA</option>
+              <option value="NHL">NHL</option>
+              <option value="Football/Soccer">Football/soccer</option>
+              <option value="NFL">NFL</option>
+              <option value="Volleyball">Volleyball</option>
+              <option value="MLB">MLB</option>
+              <option value="F1">Formula 1</option>
+            </select>
+            </p>
+            <button type="submit">Submit Post</button>
+          </form>
+          
+          
+          
+          
+          
+    </div>
+    
+</body>
+</html>
