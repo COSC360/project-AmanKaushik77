@@ -219,3 +219,33 @@ header input{
 .trend-container a:hover{
     color: #ff006e;
 }
+
+.post{
+    background-color: #ffbe0b;
+    padding: 2px;
+    margin: 2em 10em;
+}
+.post h2{
+    text-align: center;
+}
+
+.comments{
+    background-color: white;
+    margin: 2em 10em;
+}
+
+.replies{
+    background-color: white;
+    margin: 2em 15em;
+}
+
+.post-sec{
+    background-color: white;
+    margin: 2em 10em;
+    
+}
+
+.pReply{
+
+    margin: 2em 19em;
+}
