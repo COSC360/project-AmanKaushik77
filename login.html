@@ -24,4 +24,47 @@
         </nav>
     </header>
 
+    <div class = "login">
+        <h2>Login to your account!</h2>
+        <form action="submit-post.php" method="post">
+            <p>
+            <label for="post-title">Username:</label>
+            <input type="text" id="post-title" name="post-title" required>
+            </p>
+            <p>
+            <label for="password">Password:</label>
+            <input type="password" id="post-content" name="post-content" required></input>
+            </p>
+            
+            <button type="submit">Enter</button>
+          </form>
+
+    </div>
+    <h1 style="text-align:center; color:white">OR</h1>
+
+    <div class = "Sign-up">
+        <h2>Sign-up!</h2>
+        <form action="submit-post.php" method="post">
+            <p>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            </p>
+            <p>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required></input>
+                </p>
+            <p>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required></input>
+            </p>
+            <p>
+                <label for="City">City:</label>
+                <input type="text" id="city" name="city" required></input>
+            </p>
+
+            
+            <button type="submit">Sign-up!</button>
+          </form>
+
+    </div>
 </body>

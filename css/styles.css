@@ -249,3 +249,19 @@ header input{
 
     margin: 2em 19em;
 }
+
+.login{
+    background-color: #ffbe0b;
+    width: 50%;
+    padding: 1em;
+    margin-top: 1em;;
+
+}
+
+.Sign-up{
+    background-color:#3a86ff;
+    margin-left: 50%;
+    color: white;
+    padding: 1em;
+    
+}
