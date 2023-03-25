@@ -53,3 +53,6 @@ CREATE TABLE topic_categories (
     category_id INTEGER NOT NULL REFERENCES categories(category_id),
     PRIMARY KEY (topic_id, category_id)
 );
+
+
+INSERT users(user_id, username, password) VALUES ('1', 'jai', '1234');
