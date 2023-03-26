@@ -3,6 +3,7 @@ include 'config.php';
 session_start();
 $user = $_SESSION['user'];
 $uid = $_SESSION['$uid'] ;
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ $uid = $_SESSION['$uid'] ;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Penalty Box - Home</title>
+    <title>The Penalty Box - Search Results</title>
     <script src="https://kit.fontawesome.com/d0c6f74c0e.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -23,7 +24,6 @@ $uid = $_SESSION['$uid'] ;
             <form action="search.php" method="GET">
             <input type="text" name = "search" placeholder="Search">
           </form>
-
             <hr>
             <ul>
                 <li><i class="fa-solid fa-house"></i><a href = "index.php"> Home</a></li>
@@ -43,7 +43,7 @@ $uid = $_SESSION['$uid'] ;
 
     <article class = "container">
         <div class="recent">
-        <h1>Recent Events</h1>
+        <h1>Search Results</h1>
         <table>
             <thead>
               <tr>
@@ -56,7 +56,13 @@ $uid = $_SESSION['$uid'] ;
             </thead>
             <tbody>
               <?php
-                $sql = "SELECT P.post_id, P.body, U.username, T.title FROM posts P JOIN users U ON U.user_id = P.user_id JOIN topics T ON P.topic_id = T.topic_id LIMIT 20";
+              if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                $search = $_GET["search"];
+            }
+
+            if($search == "" || $search == null) {
+                $sql = "SELECT P.post_id, P.body, U.username, T.title FROM posts P JOIN users U ON U.user_id = P.user_id JOIN topics T ON P.topic_id = T.topic_id LIMIT 10";
+                
                 $res = $pdo->query($sql);
 
                 while($row = $res->fetch()){
@@ -70,49 +76,25 @@ $uid = $_SESSION['$uid'] ;
                 }
                 $pdo = null;
                 $res = null;
+            }else{
+                $sql = "SELECT P.post_id, P.body, U.username, T.title FROM posts P JOIN users U ON U.user_id = P.user_id JOIN topics T ON P.topic_id = T.topic_id WHERE P.body LIKE '%".$search."%' OR T.title LIKE '%".$search."%' OR P.body LIKE '".$search."%' OR T.title LIKE '".$search."%';";
+                $res = $pdo->query($sql);
+
+                while($row = $res->fetch()){
+                  echo "<tr>";
+                  echo "<td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td>";
+                  echo "<td> ".$row["title"]."</td>";
+                  echo "<td> ".$row["body"]."</td>";
+                  echo "<td> ".$row["username"]."</td>";
+                  echo "<td><a href= post.php?post_id=".$row["post_id"]."><i class='fa-solid fa-message'></i></a></td>";
+                  echo "</tr>";
+                }
+                $pdo = null;
+                $res = null;
+            }
               ?>
             </tbody>
           </table>
-        </div>
-        <div class = "side">
-            <h2>Recent Chirps</h2>
-            <hr>
-            <ul>
-                <li><a href = #>Its hard being a Portland fan</a></li>
-                <li><a href = #>Will Chelsea get Neymar?!</a></li>
-                <li><a href = #>Why can't Chelsea score...</a></li>
-                <li><a href = #>NBA needs to get rid of load management</a></li>
-            </ul>
-    
-        </div>
 
-        <div class = "user">
-                <?php 
-                
-               
-                if($user != null){
-                echo "<h3>Hello ".$user. "!</h3>";
-                }else{
-                  echo "<h3>Please login to your account</h3>";
-                }
-                ?>
-
-
-            <!-- <h2>Hello SplashBro</h2>
-            <hr>
-            <h3>Your Posts:</h3>
-            <ul>
-                <li><a href = #>Dame to the heat?</a></li>
-                <li><a href = #>Chelsea will win 3 league titles after this year</a></li>
-                <li><a href = #>Canada 2026 World Cup run</a></li>
-                <li><a href = #>New arena in Calgary?!</a></li>
-            </ul> -->
-    
-        </div>
-    </article>
-
-  
-
-
-</body>
+          </body>
 </html>

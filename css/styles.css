@@ -231,7 +231,8 @@ header input{
 
 .comments{
     background-color: white;
-    margin: 2em 10em;
+    
+    text-align: left;
 }
 
 .replies{
