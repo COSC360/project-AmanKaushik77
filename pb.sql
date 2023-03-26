@@ -214,6 +214,7 @@ VALUES
   (5, 1, 'I found this very helpful. Thank you!'),
   (5, 3, 'I think you missed an important point.');
 
+
   -- Users
 INSERT INTO users (username, email, password, is_admin) VALUES
     ('jane123', 'jane@example.com', 'password', FALSE),
@@ -282,3 +283,4 @@ INSERT INTO comments (post_id, user_id, body) VALUES
     (2, 10, 'I\'m rooting for the Utah Jazz.'),
     (3, 3, 'That\'s a great stat about Babe Ruth.');
     
+

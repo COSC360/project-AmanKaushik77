@@ -1,8 +1,12 @@
 <?php 
 include 'config.php';
+
 session_start();
 $user = $_SESSION['user'];
 $uid = $_SESSION['$uid'] ;
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +33,7 @@ $uid = $_SESSION['$uid'] ;
                 <li><i class="fa-solid fa-house"></i><a href = "index.php"> Home</a></li>
                 <li><i class="fa-solid fa-user"></i><a href = "profile.html"> Profile</a></li>
                 <li><i class="fa-solid fa-fire"></i><a href = "trending.php"> Trending</a></li>
+
                 <?php
                   if($user == '' || $user == null){
                     echo " <li><i class='fa-solid fa-right-to-bracket'></i><a href = 'login.html'> Login</a></li>";
@@ -37,6 +42,9 @@ $uid = $_SESSION['$uid'] ;
                   }
                 ?>
                
+
+                <li><i class="fa-solid fa-right-to-bracket"></i><a href = "login.html"> Login</a></li>
+
             </ul>
         </nav>
     </header>
@@ -56,7 +64,11 @@ $uid = $_SESSION['$uid'] ;
             </thead>
             <tbody>
               <?php
+
                 $sql = "SELECT P.post_id, P.body, U.username, T.title FROM posts P JOIN users U ON U.user_id = P.user_id JOIN topics T ON P.topic_id = T.topic_id LIMIT 20";
+
+                $sql = "SELECT P.body, U.username, T.title FROM posts P JOIN users U ON U.user_id = P.user_id JOIN topics T ON P.topic_id = T.topic_id LIMIT 10";
+
                 $res = $pdo->query($sql);
 
                 while($row = $res->fetch()){
@@ -65,7 +77,11 @@ $uid = $_SESSION['$uid'] ;
                   echo "<td> ".$row["title"]."</td>";
                   echo "<td> ".$row["body"]."</td>";
                   echo "<td> ".$row["username"]."</td>";
+
                   echo "<td><a href= post.php?post_id=".$row["post_id"]."><i class='fa-solid fa-message'></i></a></td>";
+
+                  echo "<td><a href = #><i class='fa-solid fa-message'></i></a></td>";
+
                   echo "</tr>";
                 }
                 $pdo = null;
