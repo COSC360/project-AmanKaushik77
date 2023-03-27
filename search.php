@@ -1,9 +1,17 @@
 <?php 
+
 include 'config.php';
 session_start();
-$user = $_SESSION['user'];
-$uid = $_SESSION['$uid'] ;
+// $user = $_SESSION['user'];
+// $uid = $_SESSION['$uid'] ;
 
+if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
+  $user = $_SESSION['user'];
+  $uid = $_SESSION['$uid'] ;
+}else{
+  $user = null;
+  $uid = null;
+}
 ?>
 
 <!DOCTYPE html>
