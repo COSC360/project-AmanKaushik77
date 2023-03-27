@@ -35,7 +35,7 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
             <hr>
             <ul>
                 <li><i class="fa-solid fa-house"></i><a href = "index.php"> Home</a></li>
-                <li><i class="fa-solid fa-user"></i><a href = "profile.html"> Profile</a></li>
+                <li><i class="fa-solid fa-user"></i><a href = "profile.php"> Profile</a></li>
                 <li><i class="fa-solid fa-fire"></i><a href = "trending.php"> Trending</a></li>
                 <?php
                   if($user == '' || $user == null){
