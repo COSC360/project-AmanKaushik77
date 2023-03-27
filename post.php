@@ -12,6 +12,17 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
   $user = null;
   $uid = null;
 }
+
+$sql2 = "SELECT user_id FROM users WHERE is_admin = TRUE";
+$res = $pdo->query($sql2);
+while ($row = $res->fetch()){
+  if($row['user_id'] == $uid){
+    $isAdmin = TRUE;
+  }else{
+    $isAdmin = FALSE;
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +51,7 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
                 <li><i class="fa-solid fa-fire"></i><a href = "trending.php"> Trending</a></li>
                 <?php
                   if($user == '' || $user == null){
-                    echo " <li><i class='fa-solid fa-right-to-bracket'></i><a href = 'login.html'> Login</a></li>";
+                    echo " <li><i class='fa-solid fa-right-to-bracket'></i><a href = 'login.php'> Login</a></li>";
                   }else{
                     echo " <li><i class='fa-solid fa-right-to-bracket'></i><a href = 'logout.php'> Logout</a></li>";
                   }
@@ -56,18 +67,23 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
         $sql = "SELECT title, body FROM posts P JOIN topics T ON T.topic_id = P.topic_id WHERE post_id =".$pid.";";
         $res = $pdo->query($sql);
         if($row = $res->fetch()){
-        echo "<div class = 'post'>";
-        echo "<h2>".$row['title']."</h2>";
-        echo "<p style = 'text-align:center'><td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td>   "  .$row['body']."</p>";
-        echo "</div>";
+          if($isAdmin == FALSE){
+            echo "<div class = 'post'>";
+            echo "<h2>".$row['title']."</h2>";
+            echo "<p style = 'text-align:center'><td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td>   "  .$row['body']."</p>";
+            echo "</div>";
+          }else{
+            echo "<div class = 'post'>";
+            echo "<h2>".$row['title']."</h2>";
+            echo "<p style = 'text-align:center'><td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td>   "  .$row['body']."</p>";
+            echo "<form method='GET' action='deletePost.php?post_id='.$pid.>";
+            echo  "<button type ='submit' placeholder ='Delete' name = 'delete' value='".$pid."'  action = 'deletePost.php?post_id='.$pid> <i class='fa-solid fa-trash'></i> </button>";
+            echo "</form>";
+            echo "</div>";
+          }
         }
     ?>
-    <!-- <div class="post">
-		<h2>MJ vs Lebron GOAT debate!</h2>
-		<p><td><button class="upvote" onclick="upvoteForum(1)"> &uarr;</button> <button class="downvote" onclick="upvoteForum(1)">&darr;</button></td>I'm curious to know how many people think that Lebron is the GOAT after him getting the point record? I think Lebron is offically the goat with all he has achieved in his career. He is litrally the most dominant player ever in the league.</p>
-        <input class = "pReply" type="text" placeholder="Comment">
-		
-	</div> -->
+    
 
 	<!-- Comments -->
 	<div class="comments">
@@ -76,13 +92,23 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
 		<!-- Comment 1 -->
 		<?php
             $pid = $_GET["post_id"];
-            $sql2 = "SELECT C.body, U.username FROM comments C JOIN posts P ON C.post_id = P.post_id JOIN users U ON U.user_id = C.user_id WHERE C.post_id=".$pid.";";
+            $sql2 = "SELECT C.comment_id, C.body, U.username FROM comments C JOIN posts P ON C.post_id = P.post_id JOIN users U ON U.user_id = C.user_id WHERE C.post_id=".$pid.";";
             $res = $pdo->query($sql2);
             while($row = $res->fetch()){
-            echo "<div class = 'comments'>";
-            echo "<p style = 'text-align:center'><td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td><strong>From: ".$row['username'].": </strong> "  .$row['body']." </p>";
-           
-            echo "</div>";
+              if($isAdmin == FALSE){
+                echo "<div class = 'comments'>";
+                echo "<p style = 'text-align:center'><td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td><strong>From: ".$row['username'].": </strong> "  .$row['body']." </p>";
+              
+                echo "</div>";
+              }else{
+                echo "<div class = 'comments'>";
+                echo "<p style = 'text-align:center'><td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td><strong>From: ".$row['username'].": </strong> "  .$row['body']." </p>";
+                echo "<form method='GET' action = 'deleteComment.php?comment_id=".$row['comment_id']."&post_id=".$pid."'>";
+                echo  "<button type ='submit' name ='delete' value ='".$row['comment_id']."' placeholder = 'delete' action = 'deleteComment.php?comment_id='".$row['comment_id']."> <i class='fa-solid fa-trash'></i> </button>";
+                echo "</form>";
+                echo "</div>";
+
+              }
             }
 
             echo "<form method='GET' action='comment.php?post_id='.$pid.>";
