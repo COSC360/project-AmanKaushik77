@@ -52,19 +52,17 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
         header("Location: login.html");
         exit;
         }
-        $sql = "SELECT U.user_id, U.email, U.created_at, U.updated_at, COUNT(P.post_id) as numPost FROM users U JOIN posts P ON U.user_id = P.user_id WHERE U.user_id = ".$_SESSION['$uid'].";";
+        $sql = "SELECT U.user_id, U.email, U.updated_at, COUNT(P.post_id) as numPost FROM users U JOIN posts P ON U.user_id = P.user_id WHERE U.user_id = ".$_SESSION['$uid'].";";
         $res = $pdo->query($sql);
         while($row = $res->fetch()){
         $_SESSION['email'] = $row['email'];
         $updated = $row['updated_at'];
-        $created = $row['created_at'];
         $numPost = $row['numPost'];
         }
         ?>
         <img src="user-avatar.jpg" alt="User Avatar">
         <h2><?php echo $_SESSION['user'] ?></h2>
         <p>Email: <?php echo $_SESSION['email'] ?> </p>
-        <p>Joined: <?php echo $created ?></p>
         <p>Last Active: <?php echo $updated ?></p>
         <p>Total Posts: <?php echo $numPost ?></p>
 
@@ -75,13 +73,13 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
             <thead>
               <tr>
                 <th>Post Title</th>
-                <th>Date Posted</th>
+                <th>Date Updated</th>
                 <th>Comments</th>
               </tr>
             </thead>
             <tbody>
         <?php
-            $sql = "SELECT U.user_id, P.body, P.created_at, P.post_id FROM users U JOIN posts P ON  P.user_id = U.user_id  WHERE U.user_id = ".$_SESSION['$uid'].";";
+            $sql = "SELECT U.user_id, P.body, P.updated_at, P.post_id FROM users U JOIN posts P ON  P.user_id = U.user_id  WHERE U.user_id = ".$_SESSION['$uid'].";";
             $res = $pdo->query($sql);
             while($row = $res->fetch()){
                 $sql3 = "SELECT COUNT(comment_id) as comment_id1 FROM comments WHERE post_id =".$row['post_id'].";";
@@ -91,7 +89,7 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
                 }
                 echo "<tr>";
                 echo    "<td><a href='#'>".$row['body']."</a></td>";
-                echo    "<td>".$row['created_at']."</td>";
+                echo    "<td>".$row['updated_at']."</td>";
                 echo    "<td><a href='#'>".$numcom."</a></td>";
                 echo "</tr>";
             }
@@ -99,7 +97,6 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
             </tbody>
         </table>
 
-    
         </div>
     
     <div class = "create-post">
