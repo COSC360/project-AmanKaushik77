@@ -29,7 +29,7 @@ include 'config.php';
                
                 
             }else{ 
-                echo 
+                 
             }
         }
         $pdo = null;
@@ -38,6 +38,3 @@ include 'config.php';
 
     
 ?>
-<script >
-        var php_var = "<?php echo $php_var; ?>";
-</script>
