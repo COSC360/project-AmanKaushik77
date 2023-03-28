@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 }
 
 if($user != null||$user != ''){
-    $sql =  $pdo->prepare("INSERT INTO comments (post_id, user_id, body, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW());");
+    $sql =  $pdo->prepare("INSERT INTO comments (post_id, user_id, body, updated_at) VALUES (?, ?, ?, NOW());");
     $sql->execute([$pid, $uid, $comm]);
     header("Location: post.php?post_id=".$pid);
     exit;
