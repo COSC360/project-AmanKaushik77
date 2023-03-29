@@ -29,7 +29,9 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
         <nav class = "navbar">
             <h1>The Penalty Box</h1>
             <img class = "logo" src = "Penalty.png" width="100em" height="100em">
-            <input type="text" placeholder="Search">
+             <form action="search.php" method="GET">
+            <input type="text" name = "search" placeholder="Search">
+          </form>
             <hr>
             <ul>
                 <li><i class="fa-solid fa-house"></i><a href = "index.php"> Home</a></li>
