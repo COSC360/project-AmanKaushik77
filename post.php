@@ -51,7 +51,7 @@ while ($row = $res->fetch()){
                 <li><i class="fa-solid fa-fire"></i><a href = "trending.php"> Trending</a></li>
                 <?php
                   if($user == '' || $user == null){
-                    echo " <li><i class='fa-solid fa-right-to-bracket'></i><a href = 'login.php'> Login</a></li>";
+                    echo " <li><i class='fa-solid fa-right-to-bracket'></i><a href = 'login.html'> Login</a></li>";
                   }else{
                     echo " <li><i class='fa-solid fa-right-to-bracket'></i><a href = 'logout.php'> Logout</a></li>";
                   }
