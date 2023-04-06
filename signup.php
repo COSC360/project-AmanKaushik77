@@ -19,17 +19,11 @@ include 'config.php';
         $pas = $_GET['password'];
         $email = $_GET['email'];
     }
-   
-    // if(username == null || password == null)
-	// 			return null;
-	// 	if((username.length() == 0) || (password.length() == 0))
-	// 			return null;
-
     try{
         $sql = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
         $sql->execute([$un, $email, $pas]);
-        echo "<div class=\"welcome\"><h2>Welcome to the Pentalty Box: ".$un."</h2></div>";
-        echo "<div class=\"returnButton\"><a href=\"index.php\">Return to Homepage</a></div>";
+        echo "<div class=\"welcome\"><h2>Welcome to the Pentalty Box, please click below and sign back using the username and password you created to start chatting!!".$un."</h2></div>";
+        echo "<div class=\"returnButton\"><a href=\"login.html\">Return to Login</a></div>";
         
 
     }catch(PDOException $e){

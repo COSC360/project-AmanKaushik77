@@ -63,12 +63,20 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
       <?php
                 $sql = "SELECT COUNT(*) AS totalUpvotes, P.body, P.post_id FROM posts P JOIN upvotes U ON P.post_id = U.post_id GROUP BY U.post_id ORDER BY totalUpvotes DESC ";
                 $res = $pdo->query($sql);
-
+                
                 while($row = $res->fetch()){
+                  $sql2 = "SELECT COUNT(*) AS totaldownvotes FROM posts P JOIN downvotes U ON P.post_id = U.post_id WHERE P.post_id = ".$row["post_id"]." GROUP BY U.post_id ORDER BY totaldownvotes DESC";
+                  $res2 = $pdo->query($sql2); 
                   echo "<tr>";
-                  echo "<td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td>";
+                  echo "<td><form action='upvoteforum.php?post_id=".$row["post_id"]."' method='post'><button class='upvote'>&uarr;</button></form><form action='downvoteforum.php?post_id=".$row["post_id"]."' method='post'><button class='downvote'>&darr;</button></form></td>";
                   echo "<td> <a href= post.php?post_id=".$row["post_id"].">".$row["body"]."</a></td>";
-                  echo "<td> ".$row["totalUpvotes"]."</td>";
+                  if($row2 = $res2->fetch()){
+                  $totalvotes = ($row["totalUpvotes"] - $row2['totaldownvotes']);
+                  echo "<td> ".$totalvotes."</td>";
+                  }else{
+                    echo "<td> ".$row["totalUpvotes"]."</td>";
+                  }
+                  
                   echo "</tr>";
                 }
                 $pdo = null;

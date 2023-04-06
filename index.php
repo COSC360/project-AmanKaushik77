@@ -70,7 +70,7 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
 
                 while($row = $res->fetch()){
                   echo "<tr>";
-                  echo "<td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td>";
+                  echo "<td><form action='upvoteforum.php?post_id=".$row["post_id"]."' method='post'><button class='upvote'>&uarr;</button></form><form action='downvoteforum.php?post_id=".$row["post_id"]."' method='post'><button class='downvote'>&darr;</button></form></td>";
                   echo "<td> ".$row["title"]."</td>";
                   echo "<td> ".$row["body"]."</td>";
                   echo "<td> ".$row["username"]."</td>";

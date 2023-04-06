@@ -16,9 +16,6 @@ include 'config.php';
         $res = $pdo->query($sql);
         if($row = $res->fetch()){
             if(strcasecmp($row['username'], $un) == 0 && strcasecmp($row['password'], $pas) == 0){
-                //echo "<div class=\"welcome\"><h2>Welcome to the Pentalty Box: ".$un."</h2></div>";
-       // echo "<div class=\"returnButton\"><a href=\"index.php\">Return to Homepage</a></div>";
-                // echo "<p>User has valid account</p>";
                 $uid = $row['user_id'];
                
                 session_start();
@@ -31,6 +28,9 @@ include 'config.php';
             }else{ 
                  
             }
+        }
+        else{
+            header("Location: login.html");
         }
         $pdo = null;
         $res = null;
