@@ -64,7 +64,7 @@ while ($row = $res->fetch()){
     <?php 
         $pid = $_GET["post_id"];
         $_SESSION['pid'] = $pid;
-        $sql = "SELECT title, body FROM posts P JOIN topics T ON T.topic_id = P.topic_id WHERE post_id =".$pid.";";
+        $sql = "SELECT title, body, P.user_id FROM posts P JOIN topics T ON T.topic_id = P.topic_id WHERE post_id =".$pid.";";
         $res = $pdo->query($sql);
         if($row = $res->fetch()){
           if($isAdmin == FALSE){
@@ -79,6 +79,8 @@ while ($row = $res->fetch()){
             echo "<form method='GET' action='deletePost.php?post_id='.$pid.>";
             echo  "<button type ='submit' placeholder ='Delete' name = 'delete' value='".$pid."'  action = 'deletePost.php?post_id='.$pid> <i class='fa-solid fa-trash'></i> </button>";
             echo "</form>";
+            echo "<br>";
+            echo "<a href='deleteUser.php?user_id=".$row['user_id']."'> <i class='fa-solid fa-ban'></i> </a>";
             echo "</div>";
           }
         }
@@ -92,20 +94,21 @@ while ($row = $res->fetch()){
 		<!-- Comment 1 -->
 		<?php
             $pid = $_GET["post_id"];
-            $sql2 = "SELECT C.comment_id, C.body, U.username FROM comments C JOIN posts P ON C.post_id = P.post_id JOIN users U ON U.user_id = C.user_id WHERE C.post_id=".$pid.";";
+            $sql2 = "SELECT C.comment_id, C.body, U.username, U.user_id FROM comments C JOIN posts P ON C.post_id = P.post_id JOIN users U ON U.user_id = C.user_id WHERE C.post_id=".$pid.";";
             $res = $pdo->query($sql2);
             while($row = $res->fetch()){
               if($isAdmin == FALSE){
-                echo "<div class = 'comments'>";
-                echo "<p style = 'text-align:center'><td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td><strong>From: ".$row['username'].": </strong> "  .$row['body']." </p>";
-              
+                echo "<div style = 'border: 1px solid ;' class = 'comments'>";
+                echo "<p style = 'text-align:center'><a style ='color:black; text-decoration: none'; href='otherUsers.php?user_id=".$row['user_id']."'><strong> From:".$row['username'].": </strong> </a> "  .$row['body']." </p>";              
                 echo "</div>";
               }else{
-                echo "<div class = 'comments'>";
-                echo "<p style = 'text-align:center'><td><button class='upvote' onclick='upvoteForum(1)'> &uarr;</button> <button class='downvote' onclick='upvoteForum(1)'>&darr;</button></td><strong>From: ".$row['username'].": </strong> "  .$row['body']." </p>";
+                echo "<div style = 'border: 1px solid ;' class = 'comments'>";
+                echo "<p style = 'text-align:center'><a style ='color:black; text-decoration: none'; href='otherUsers.php?user_id=".$row['user_id']."'><strong> From:".$row['username'].": </strong> </a> "  .$row['body']." </p>";              
                 echo "<form method='GET' action = 'deleteComment.php?comment_id=".$row['comment_id']."&post_id=".$pid."'>";
                 echo  "<button type ='submit' name ='delete' value ='".$row['comment_id']."' placeholder = 'delete' action = 'deleteComment.php?comment_id='".$row['comment_id']."> <i class='fa-solid fa-trash'></i> </button>";
                 echo "</form>";
+                echo "<br>";
+                echo "<a href='deleteUser.php?user_id=".$row['user_id']."'> <i class='fa-solid fa-ban'></i> </a>";
                 echo "</div>";
 
               }
