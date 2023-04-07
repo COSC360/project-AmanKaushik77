@@ -144,8 +144,8 @@ INSERT INTO `posts` (`post_id`, `topic_id`, `user_id`, `body`, `updated_at`) VAL
 (14, 14, 41, 'I love basketball', '2023-03-27 08:46:20'),
 (15, 15, 36, 'For the money?!', '2023-03-27 08:48:43'),
 (16, 16, 38, 'I think he should go to the canucks', '2023-03-27 23:50:02'),
-(17, 17, 23, 'I think the Bruins will in it all this year, just look at thier record ', '2023-04-06 18:57:59'),
-(18, 18, 35, 'fuck cunt shit bitch ', '2023-04-07 06:44:34');
+(17, 17, 23, 'I think the Bruins will in it all this year, just look at thier record ', '2023-04-06 18:57:59');
+
 
 -- --------------------------------------------------------
 
