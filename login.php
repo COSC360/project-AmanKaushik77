@@ -11,7 +11,7 @@ include 'config.php';
         $un = $_GET['username'];
         $pas = $_GET['password'];
     }
-  
+        $pas = md5($pas);
         $sql = "SELECT * FROM users where username = '$un' AND password = '$pas';";
         $res = $pdo->query($sql);
         if($row = $res->fetch()){
