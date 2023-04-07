@@ -54,7 +54,7 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
         header("Location: login.html");
         exit;
         }
-        $sql = "SELECT U.user_id, U.email, U.updated_at, COUNT(P.post_id) as numPost FROM users U JOIN posts P ON U.user_id = P.user_id WHERE U.user_id = ".$_SESSION['$uid'].";";
+        $sql = "SELECT U.user_id, U.email, U.updated_at, COUNT(P.post_id) as numPost FROM users U JOIN posts P ON U.user_id = P.user_id WHERE U.user_id = ".$_SESSION['$uid'];
         $res = $pdo->query($sql);
         while($row = $res->fetch()){
         $_SESSION['email'] = $row['email'];
@@ -62,12 +62,22 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
         $numPost = $row['numPost'];
         }
         ?>
-        <img src="user-avatar.jpg" alt="User Avatar">
+        <form method="POST" action="profilePic.php"  enctype="multipart/form-data" >
+         Upload a profile picture:
+          <br>
+          <input type="file" name="fileToUpload" id="fileToUpload" required>
+          <br>
+          <input type="submit" value="Change profile picture" name = "submit">
+        </form>
+        <?php 
+          include 'showpfp.php';
+        ?>
+        
         <h2><?php echo $_SESSION['user'] ?></h2>
         <p>Email: <?php echo $_SESSION['email'] ?> </p>
         <p>Last Active: <?php echo $updated ?></p>
         <p>Total Posts: <?php echo $numPost ?></p>
-
+        <a style = "color: white" href = 'changePass.html'>Update Password?</a>
     </div>
     <div class = "proContain">
         <table class="recent-posts">
@@ -96,6 +106,7 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
                 echo "</tr>";
             }
         ?>
+       
             </tbody>
         </table>
 
