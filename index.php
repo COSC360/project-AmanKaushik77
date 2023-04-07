@@ -65,7 +65,7 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
             </thead>
             <tbody>
               <?php
-                $sql = "SELECT P.post_id, P.body, U.username, T.title FROM posts P JOIN users U ON U.user_id = P.user_id JOIN topics T ON P.topic_id = T.topic_id LIMIT 20";
+                $sql = "SELECT P.post_id, P.body, U.username, U.user_id, T.title FROM posts P JOIN users U ON U.user_id = P.user_id JOIN topics T ON P.topic_id = T.topic_id LIMIT 20";
                 $res = $pdo->query($sql);
 
                 while($row = $res->fetch()){
@@ -73,7 +73,7 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
                   echo "<td><form action='upvoteforum.php?post_id=".$row["post_id"]."' method='post'><button class='upvote'>&uarr;</button></form><form action='downvoteforum.php?post_id=".$row["post_id"]."' method='post'><button class='downvote'>&darr;</button></form></td>";
                   echo "<td> ".$row["title"]."</td>";
                   echo "<td> ".$row["body"]."</td>";
-                  echo "<td> ".$row["username"]."</td>";
+                  echo "<td> <a style ='color:white; text-decoration: none'; href = otherUsers.php?user_id=".$row["user_id"].">".$row["username"]."</a></td>";
                   echo "<td><a href= post.php?post_id=".$row["post_id"]."><i class='fa-solid fa-message'></i></a></td>";
                   echo "</tr>";
                 }
@@ -112,9 +112,24 @@ if(isset($_SESSION['user'])&& isset($_SESSION['$uid'])) {
                 
                
                 if($user != null){
+                  include 'showpfp.php';
                 echo "<h3>Hello ".$user. "!</h3>";
                 }else{
                   echo "<h3>Please login to your account</h3>";
+                }
+
+                $sql7 = "SELECT user_id FROM users WHERE is_admin = TRUE";
+                $res = $pdo->query($sql7);
+                while ($row = $res->fetch()){
+                  if($row['user_id'] == $uid){
+                    $isAdmin = TRUE;
+                  }else{
+                    $isAdmin = FALSE;
+                  }
+                }
+
+                if ($isAdmin){
+                  echo "<a style = 'text-decoration: underline' href='admin.php'> Admin Page </a>";
                 }
                 ?>
 
