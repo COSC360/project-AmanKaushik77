@@ -2,9 +2,9 @@
 // Create connection
 try{
     echo "<h1> Attempting to connect to the database </h1>";
-   $connString = "mysql:host=localhost;dbname=test4";
-   $username = "root";
-   $password = "";
+   $connString = "mysql:host=cosc360.ok.ubc.ca;dbname=db_68952928";
+   $username = "68952928";
+   $password = "68952928";
    $pdo = new PDO($connString,$username,$password);
    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    echo "<h1>Sucessfully connected! :D </h1>";
