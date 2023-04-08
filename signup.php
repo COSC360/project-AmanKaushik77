@@ -31,7 +31,7 @@ include 'config.php';
             echo "<a href=login.html> Try again</a>";
         }else{
             $sql = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-            $sql->execute([$un, $email, $pas]);
+            $sql->execute([$un, $email, md5($pas)]);
             echo "<div class=\"welcome\"><h2>Welcome to the Pentalty Box, please click below and sign back using the username and password you created to start chatting!!".$un."</h2></div>";
             echo "<div class=\"returnButton\"><a href=\"login.html\">Return to Login</a></div>";
         }
